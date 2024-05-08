@@ -2,5 +2,20 @@
   "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394",
   "volta": {
     "node": "22.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.0.0-alpha.14",
+    "@tsconfig/vite-react": "^3.0.2",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "lightningcss": "^1.24.1",
+    "tailwindcss": "4.0.0-alpha.14",
+    "vite": "^5.2.11",
+    "vite-tsconfig-paths": "^4.3.2"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
