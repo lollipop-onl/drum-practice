@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { clsx } from "clsx";
+import { useMetronome } from "~hooks/useMetronome";
 
 export const App = () => {
   const [bpm, setBpm] = useState(120);
   const [resolution, setResolution] = useState("8");
+  const { isPlaying, sixteenNotes, start, stop } = useMetronome(bpm, resolution);
 
   return (
     <>
@@ -33,7 +35,20 @@ export const App = () => {
           <div className="max-w-screen-sm mx-auto w-full">
             <ul className="flex justify-between gap-2">
               {Array.from({ length: 16 }).map((_, i) => (
-                <li key={i} className={clsx("aspect-square flex-grow border", false ? 'border-blue-700' : 'border-slate-500', i % 4 === 0 ? 'bg-slate-500 bg-opacity-40' : '')} />
+                <li
+                  key={i}
+                  className={clsx(
+                    "aspect-square flex-grow border",
+                    sixteenNotes === i ? i % 4 === 0 ? 'border-red-700' : "border-blue-700" : "border-slate-500",
+                    i % 4 === 0
+                      ? sixteenNotes === i
+                        ? "bg-red-700"
+                        : "bg-slate-500 bg-opacity-40"
+                      : sixteenNotes === i
+                      ? "bg-blue-700"
+                      : ""
+                  )}
+                />
               ))}
             </ul>
           </div>
@@ -44,7 +59,12 @@ export const App = () => {
       </div>
       <div className="sticky bottom-0 left-0 w-full">
         <div className="px-2 py-4">
-          <button className="btn w-full">Play</button>
+          <button
+            className="btn w-full"
+            onClick={() => (isPlaying ? stop() : start())}
+          >
+            {isPlaying ? "Stop" : "Start"}
+          </button>
         </div>
       </div>
     </>
