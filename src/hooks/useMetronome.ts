@@ -17,6 +17,7 @@ export const useMetronome = (bpm: number, resolution: string) => {
   }, []);
 
   useEffect(() => {
+    if (!isPlaying) return;
     if (resolution === '8' && sixteenNotes % 2) return;
     if (resolution === '4' && sixteenNotes % 4) return;
     
@@ -26,7 +27,7 @@ export const useMetronome = (bpm: number, resolution: string) => {
     oscillator.connect(audioContext.destination);
     oscillator.start();
     oscillator.stop(audioContext.currentTime + 0.05);
-  }, [resolution, sixteenNotes]);
+  }, [isPlaying, resolution, sixteenNotes]);
 
   useEffect(() => {
     if (!isPlaying) return;
