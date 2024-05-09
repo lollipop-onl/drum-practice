@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useMetronome } from "~hooks/useMetronome";
-import a from "~assets/a.svg";
 import { Header } from "~components/Header";
 import { Footer } from "~components/Footer";
 import { themeChange } from 'theme-change'
+import { RandomBeats } from "~components/RandomBeats";
 
 export const App = () => {
   const [bpm, setBpm] = useState(120);
@@ -29,10 +29,7 @@ export const App = () => {
         />
       </div>
       <div className="max-w-screen-sm mx-auto w-full grow">
-        <div className="min-h-full">
-          <p>content</p>
-          <img src={a} />
-        </div>
+        <RandomBeats sixteenthNotes={sixteenNotes} />
       </div>
       <div className="sticky bottom-0 left-0 w-full">
         <Footer>
