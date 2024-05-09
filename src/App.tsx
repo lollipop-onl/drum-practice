@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMetronome } from "~hooks/useMetronome";
 import a from "~assets/a.svg";
 import { Header } from "~components/Header";
 import { Footer } from "~components/Footer";
+import { themeChange } from 'theme-change'
 
 export const App = () => {
   const [bpm, setBpm] = useState(120);
@@ -11,6 +12,10 @@ export const App = () => {
     bpm,
     resolution
   );
+
+  useEffect(() => {
+    themeChange(false);
+  }, [])
 
   return (
     <div className="flex flex-col h-full">

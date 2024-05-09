@@ -1,4 +1,5 @@
 import { BeatVisualizer } from "./BeatVisualizer";
+import tailwindConfig from '@@tailwind.config';
 
 type Props = {
   bpm: number;
@@ -28,16 +29,23 @@ export const Header = ({
           onChange={(e) => onChangeBpm(parseInt(e.target.value, 10))}
         />
         <div className="flex items-center justify-between">
-          <p className="text-lg">BPM {bpm}</p>
-          <select
-            className="select select-bordered"
-            defaultValue={resolution}
-            onChange={(e) => onChangeResolution(e.target.value)}
-          >
-            <option value="16">1/16 notes</option>
-            <option value="8">1/8 notes</option>
-            <option value="4">1/4 notes</option>
+            <p className="text-sm">BPM {bpm}</p>
+          <div className="flex gap-x-2 items-center">
+          <select className="select select-bordered select-sm capitalize" data-choose-theme>
+            {tailwindConfig.daisyui.themes.map((theme) => (
+              <option value={theme}>{theme}</option>
+            ))}
           </select>
+            <select
+              className="select select-bordered select-sm"
+              defaultValue={resolution}
+              onChange={(e) => onChangeResolution(e.target.value)}
+            >
+              <option value="16">1/16 notes</option>
+              <option value="8">1/8 notes</option>
+              <option value="4">1/4 notes</option>
+            </select>
+          </div>
         </div>
         <BeatVisualizer sixteenNotes={sixteenNotes} />
       </div>
